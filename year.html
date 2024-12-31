@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pixel Letter</title>
+    <style>
+
+
+@font-face {
+    font-family: 'dogicalpixel'; /*a name to be used later*/
+    src: url('Sleepy Moody.otf'); /*URL to font*/
+}
+        body {
+            margin: 0;
+            font-family: dogicalpixel;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 27cm;
+            color: rgb(255, 255, 255);
+            background-color: #fff8f0;
+        }
+
+        .letter-container {
+            text-align: center;
+            display: none;
+            animation: fade-in 2s forwards;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .envelope {
+            width: 100px;
+            height: 70px;
+            background: pink;
+            border: 2px solid #ff9ebd;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope:before, .envelope:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .envelope:before {
+            top: -10px;
+            left: 50%;
+            border-width: 0 50px 20px 50px;
+            border-color: transparent transparent pink transparent;
+            transform: translateX(-50%);
+        }
+
+        .envelope:after {
+            bottom: -20px;
+            left: 50%;
+            border-width: 20px 50px 0 50px;
+            border-color: pink transparent transparent transparent;
+            transform: translateX(-50%);
+        }
+
+        .letter {
+            width: 300px;
+            height: 400px;
+            background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F16%2F1d%2F48%2F161d486cb034cd71230e9c66d44a3756.jpg&f=1&nofb=1&ipt=a0ce39d4f841a74b2c86bdbc3aaa3926c6dbfd55793f6fff0bdff67f339d3747&ipo=images') no-repeat center;
+            background-size: cover;
+            border: 1px solid #d9b382;
+            padding: 20px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .line {
+            opacity: 0;
+            font-size: 14px;
+            margin: 5px 0;
+            animation: type-line 1s forwards;
+        }
+
+        @keyframes type-line {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" onclick="openLetter()"></div>
+    <div class="letter-container">
+        <div class="letter" id="letter">
+            <!-- Text will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const text = [
+            "Happy New Year Simzz!",
+            "So this year may/may not be good for me,",
+            "but one thing remained unchanged and that was our bond :).",
+            "I'm glad to have you and forever will be grateful for you and everything you do.",
+            "And I'm really happy about your relationship that you genuinely found a great and amazing guy.",
+            "Wish I was there for you so we can just hug and have lots of roam and fun hehe.",
+            "Maybe in 2025, our year gonna be very mazedar and pyara hehe,",
+            "I Wish sab acha jaaye,sab cha mundaye BC."
+        ];
+
+        function openLetter() {
+            document.querySelector('.envelope').style.display = 'none';
+            const container = document.querySelector('.letter-container');
+            container.style.display = 'block';
+            const letter = document.getElementById('letter');
+
+            text.forEach((line, index) => {
+                const lineElement = document.createElement('div');
+                lineElement.classList.add('line');
+                lineElement.style.animationDelay = `${index * 2}s`;
+                lineElement.textContent = line;
+                letter.appendChild(lineElement);
+            });
+        }
+    </script>
+    <img src = " https://media.tenor.com/rbHUnVkjloQAAAAj/cat-cute.gif"
+</body>
+</html>
